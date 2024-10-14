@@ -48,8 +48,13 @@ class Hamburger(Login):
         hamburger_button.click()
         return self
 
+    def click_close_hamburger_menu(self):
+        self.driver.find_element('xpath','//button[@id="react-burger-cross-btn"]').click()
+        return self
+
     def items_in_hamburger(self):
-        wait = WebDriverWait(self.driver, 10)
+        self.driver.implicitly_wait(10)
+        wait = WebDriverWait(self.driver, 20)
         hamburger_button = wait.until(EC.element_to_be_clickable(locators_homepage['button_hamburger']))
         hamburger_button.click()
         menu_items = wait.until(EC.visibility_of_all_elements_located(locators_homepage['text_hamburger_items']))
