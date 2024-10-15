@@ -23,7 +23,6 @@ class TestCart:
 
 
     ## TC - Verify that, add an item to cart from home page and check same item will be available on cart page ##
-    # @pytest.mark.dependency(depends=['Login::test_login'])
     # @pytest.mark.skip
     def test_add_item_to_cart_from_home_page_and_check_same_item_is_available_on_cart_page(self):
         add_to_cart_obj = Products(self.driver)

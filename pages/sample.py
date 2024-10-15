@@ -1,6 +1,9 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 opts = webdriver.ChromeOptions()
 opts.add_experimental_option('detach',True)
 driver = webdriver.Chrome(options=opts)
@@ -34,11 +37,11 @@ add_to_carts_list = [button.text for button in add_to_carts]
 # print(handle1)
 # print(handle2)
 
-for index,value in enumerate(inventory_items_list):
-    if value == 'Sauce Labs Bike Light':
-        print(index)
-        add_to_cart_button = driver.find_element('xpath',f'//div[text()="{value}"]/../../..//button[text()="Add to cart"]')
-        add_to_cart_button.click()
+# for index,value in enumerate(inventory_items_list):
+#     if value == 'Sauce Labs Bike Light':
+#         print(index)
+#         add_to_cart_button = driver.find_element('xpath',f'//div[text()="{value}"]/../../..//button[text()="Add to cart"]')
+#         add_to_cart_button.click()
 #     else:
 #         print('not able to click')
 #
@@ -51,13 +54,25 @@ for index,value in enumerate(inventory_items_list):
 #                                              '(//button[text()="Add to cart"])[1]')
 #     add_to_cart_button.click()
 
-
-
-
 # for i in inventory_items_list:
 #     if i.text == 'Sauce Labs Bike Light':
 #         add_to_cart.click()
+dropdown_element = driver.find_element('class name', 'product_sort_container')
 
+# Use Select class to handle the dropdown
+select = Select(dropdown_element)
 
+# Retrieve all options from the dropdown
+options = select.options  # This returns a list of all available options
 
-
+select.select_by_index(2)
+# Loop through each option and print its text or interact with it
+# for index,option in enumerate(options):
+#     # print(option.text)
+#     # print(index)
+#     # print("Option Text:", option.text)  # Print the visible text of the option
+#     # select.select_by_visible_text(option.text)
+#     # select.select_by_visible_text(option.text)
+#     dropdown_element.click()
+#     time.sleep(2)
+#     select.select_by_index(index)
