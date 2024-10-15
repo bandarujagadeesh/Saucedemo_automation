@@ -2,21 +2,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from data.reading_excel import logout_locators_data, homepage_locators_data, logout_navigate_data, product_names_data
 from pages.login import Login
+from library_.selenium_wrapper import SeleniumWrapper
 
 locators_logout = logout_locators_data()
 locators_homepage = homepage_locators_data()
 total_products_and_items = product_names_data()
 logo_name = logout_navigate_data()
-print(total_products_and_items[1][1])
-
-
+# print(total_products_and_items[1][1])
 
 class Logout(Login):
     def __init__(self, driver):
         super().__init__(driver)
+        self.selenium_wrapper_obj = SeleniumWrapper(self.driver)
 
     def click_hamburger_button(self):
-        self.driver.find_element(*locators_logout['button_hamburger']).click()
+        # self.driver.find_element(*locators_logout['button_hamburger']).click()
+        self.selenium_wrapper_obj.click_on_the_element(locators_logout['button_hamburger'])
         return self
 
     def click_logout_link(self):

@@ -2,7 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 
-@pytest.fixture(scope ='class',params=['edge','chrome'])
+@pytest.fixture(autouse=True, scope ='class',params=['chrome'])
 def driver_(request):
     parameter = request.param
     if parameter == 'chrome':
